@@ -1,20 +1,36 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import Header from '../Components/Header/Header';
+import Header from '../Components/Header';
+import LatestNews from '../Components/LatestNews';
+import Navbar from '../Components/Navbar';
+import LeftAside from '../Components/HomeLayout/LeftAside';
+import RightAside from '../Components/HomeLayout/RightAside';
 
 const Root = () => {
     return (
         <div className='container mx-auto'>
+
             <header>
                 <Header></Header>
+
+                <section className='w-11/12 mx-auto my-10'>
+                    <LatestNews></LatestNews>
+                </section>
+
+                <nav className='w-11/12 mx-auto my-10'>
+                    <Navbar></Navbar>
+                </nav>
+
             </header>
 
-            <main>
-                <section className='left-nav'></section>
-                <section className='main'>
+            <main className='w-11/12 mx-auto my-10 grid grid-cols-12'>
+                <aside className='col-span-3'><LeftAside></LeftAside></aside>
+
+                <section className='col-span-6'>
                     <Outlet></Outlet>
                 </section>
-                <section className='right-nav'></section>
+
+                <aside className='col-span-3'><RightAside></RightAside></aside>
 
             </main>
 

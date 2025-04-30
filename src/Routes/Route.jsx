@@ -1,6 +1,8 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
 import Root from '../Layout/Root';
+import Home from '../Pages/Home';
+import CategoryNews from '../Pages/CategoryNews';
 
 export const router = createBrowserRouter([
     {
@@ -8,15 +10,14 @@ export const router = createBrowserRouter([
         element: <Root></Root>,
         errorElement: <p>error</p>,
 
-
         children: [
-
-            // { index: true, element: <Home></Home> },
-
-            { path: 'auth', element: <h1>auth</h1> },
-
-            { path: 'news', element: <h1>news</h1> },
-
+            { index: true, element: <Home></Home> },
+            { path: 'category/:id', Component: CategoryNews },
         ]
     },
+
+
+    { path: 'about', element: <h1>about</h1> },
+
+    { path: 'career', element: <h1>career</h1> },
 ]);

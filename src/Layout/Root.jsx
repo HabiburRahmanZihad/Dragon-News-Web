@@ -8,8 +8,8 @@ import RightAside from '../Components/HomeLayout/RightAside';
 
 const Root = () => {
     return (
-        <div className='container mx-auto'>
-            
+        <div>
+
             {/* Header SECTION */}
             <header>
                 <Header></Header>
@@ -28,13 +28,13 @@ const Root = () => {
             {/* Body SECTION */}
             <main className='w-11/12 mx-auto my-10 space-y-10 md:space-y-0 md:grid grid-cols-12 gap-6'>
 
-                <aside className='col-span-3'><LeftAside></LeftAside></aside>
+                <aside className='col-span-3 md:sticky md:top-2 md:h-fit'><LeftAside></LeftAside></aside>
 
                 <section className='col-span-6'>
                     <Outlet></Outlet>
                 </section>
 
-                <aside className='col-span-3'><RightAside></RightAside></aside>
+                <aside className='col-span-3 md:sticky md:top-2 md:h-fit'><RightAside></RightAside></aside>
 
             </main>
 

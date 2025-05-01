@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
-import user from '../assets/user.png';
+import userIcon from '../assets/user.png';
+import { AuthContext } from '../Provider/AuthContext';
 
 const Navbar = () => {
+
+    const { user } = use(AuthContext);
+
+
     return (
         <div className='flex justify-between items-center '>
 
-            <div className=''></div>
+            <div className=''>{user && user.email } </div>
 
             <div className='nav flex items-center gap-5 text-accent'>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/'> Home</NavLink>
@@ -15,7 +20,7 @@ const Navbar = () => {
             </div>
 
             <div className='login-btn flex items-center gap-5'>
-                <img className='w-[30px]' src={user} alt="" />
+                <img className='w-[30px]' src={userIcon} alt="" />
                 <Link to='/auth' className='btn btn-primary px-10'>Login</Link>
             </div>
 

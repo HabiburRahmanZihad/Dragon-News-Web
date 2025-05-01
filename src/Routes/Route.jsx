@@ -12,7 +12,13 @@ export const router = createBrowserRouter([
 
         children: [
             { index: true, element: <Home></Home> },
-            { path: 'category/:id', Component: CategoryNews },
+
+            {
+                path: 'category/:id',
+                loader : () => fetch('/news.json'),
+                Component: CategoryNews,
+                hydrateFallbackElement: <p>Loading...</p>,
+            },
         ]
     },
 

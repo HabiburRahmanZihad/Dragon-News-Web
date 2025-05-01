@@ -9,9 +9,9 @@ const Navbar = () => {
             <div className=''></div>
 
             <div className='nav flex items-center gap-5 text-accent'>
-                <NavLink to='/'> Home</NavLink>
-                <NavLink to='/about'> About</NavLink>
-                <NavLink to='/career'> Career</NavLink>
+                <NavLink className={({ isActive }) => isActive ? '' : ''} to='/'> Home</NavLink>
+                <NavLink className={({ isActive }) => isActive ? '' : ''} to='/about'> About</NavLink>
+                <NavLink className={({ isActive }) => isActive ? '' : ''} to='/career'> Career</NavLink>
             </div>
 
             <div className='login-btn flex items-center gap-5'>

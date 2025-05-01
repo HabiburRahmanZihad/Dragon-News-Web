@@ -26,7 +26,7 @@ const Root = () => {
 
 
             {/* Body SECTION */}
-            <main className='w-11/12 mx-auto my-10 md:grid grid-cols-12 gap-6'>
+            <main className='w-11/12 mx-auto my-10 space-y-10 md:space-y-0 md:grid grid-cols-12 gap-6'>
 
                 <aside className='col-span-3'><LeftAside></LeftAside></aside>
 

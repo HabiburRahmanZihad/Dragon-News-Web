@@ -11,7 +11,7 @@ const NewsDetailsCard = ({ news }) => {
     // Scroll to top when news id changes
     useEffect(() => {
         window.scrollTo({
-            top: 160,
+            top: 0,
             behavior: 'smooth'
         });
     }, [id]);

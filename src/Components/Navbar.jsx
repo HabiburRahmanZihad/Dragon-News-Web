@@ -18,12 +18,14 @@ const Navbar = () => {
             })
     }
 
+    console.log(user);
+
 
 
     return (
         <div className='flex justify-between items-center '>
 
-            <div className='hidden md:flex'>{user && user.email} </div>
+            <p className='hidden md:flex text-2xl font-bold text-secondary'>{user ? `hi ! ${user?.displayName}` : 'Please Login!!!'} </p>
 
             <div className='flex items-center gap-5 text-accent'>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/'> Home</NavLink>
@@ -33,8 +35,9 @@ const Navbar = () => {
 
             <div className='login-btn flex items-center gap-5'>
 
-                <div >
-                    <img className='w-[30px] cursor-pointer' src={userIcon} alt="" />
+                <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
+                    <img className=' cursor-pointer'
+                        src={`${user ? user?.photoURL : userIcon}`} alt="" />
                 </div>
 
                 {user

@@ -1,8 +1,10 @@
-import React, { use, useRef } from 'react';
+import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Login = () => {
+    const [error, setError] = useState('');
+
     const location = useLocation();
     const { signInUser, forgetPassword } = use(AuthContext);
     const emailRef = useRef(null);
@@ -14,6 +16,8 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        setError('');
+
         signInUser(email, password)
             .then(() => {
                 alert('User Logged In Successfully');
@@ -22,7 +26,7 @@ const Login = () => {
                 navigate(destination);
             })
             .catch(error => {
-                alert(error.message);
+                setError(error.message);
             })
 
         form.reset();
@@ -39,7 +43,7 @@ const Login = () => {
                 alert('Password reset email sent. Please check your inbox.');
             })
             .catch(error => {
-                alert(error.message);
+                setError(error.message);
             })
     }
 
@@ -53,12 +57,15 @@ const Login = () => {
                 <div className="card-body">
                     <form onSubmit={handleSignIn} className="fieldset gap-4">
                         <label className="label text-xl font-bold">Email address</label>
-                        <input type="email" ref={emailRef} name='email' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your email address" />
+                        <input type="email" ref={emailRef} name='email' required className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your email address" />
 
                         <label className="label text-xl font-bold">Password</label>
-                        <input type="password" name='password' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your password" />
+                        <input type="password" name='password' required className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your password" />
 
                         <button type="button" onClick={handleFrogetPass} className="link link-hover text-accent">Forgot password?</button>
+
+
+                        <p  className="text-center text-red-600">{error} </p>
 
                         <button type='submit' className="btn btn-primary my-4">Login</button>
                     </form>

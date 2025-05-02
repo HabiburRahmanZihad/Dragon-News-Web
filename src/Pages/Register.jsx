@@ -1,9 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Register = () => {
-    const { createUser } = use(AuthContext);
+    const [error, setError] = useState('');
+
+    const { createUser, updateUserProfile, user,setUser } = use(AuthContext);
 
     const navigate = useNavigate();
 
@@ -16,15 +18,44 @@ const Register = () => {
         const password = form.password.value;
         const terms = form.terms.checked;
 
-        console.log(name, photoURL, email, password, terms);
+        setError('');
+
+        if (name.length < 3) {
+            setError('Name must be at least 3 characters long');
+            return;
+        }
+        if (photoURL.length < 5) {
+            setError('Photo URL must be a valid URL');
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address');
+            return;
+        }
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return;
+        }
+        if (!terms) {
+            setError('Please accept the terms and conditions');
+            return;
+        }
 
         createUser(email, password)
             .then(() => {
+                updateUserProfile({ displayName: name, photoURL })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL });
+                    })
+                    .catch(error => {
+                        setError(error.message);
+                    });
+                // User created successfully
                 alert('User Created Successfully');
-                navigate('/auth');
+                navigate('/');
             })
             .catch(error => {
-                alert(error.message);
+                setError(error.message);
             })
     }
 
@@ -54,11 +85,13 @@ const Register = () => {
                         <input type="password" name='password' className="input w-full bg-base-200 py-8 border-0 text-accent" required placeholder="Enter your password" />
 
                         <div className="text-accent flex items-center  gap-4">
-                            <input type="checkbox" defaultChecked name='terms' required className="checkbox" />Accept
+                            <input type="checkbox" defaultChecked name='terms' className="checkbox" />Accept
                             <span className='font-bold'>Term & Conditions</span>
                         </div>
 
                         <button type='submit' className="btn btn-primary my-4">Register</button>
+
+                        <p className="text-center text-red-600">{error} </p>
 
                     </form>
 

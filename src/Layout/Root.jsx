@@ -5,8 +5,10 @@ import LatestNews from '../Components/LatestNews';
 import Navbar from '../Components/Navbar';
 import LeftAside from '../Components/HomeLayout/LeftAside';
 import RightAside from '../Components/HomeLayout/RightAside';
+import { useNavigation } from 'react-router';
 
 const Root = () => {
+    const { state } = useNavigation();
     return (
         <div>
 
@@ -31,6 +33,7 @@ const Root = () => {
                 <aside className='col-span-3 md:sticky md:top-2 md:h-fit'><LeftAside></LeftAside></aside>
 
                 <section className='col-span-6'>
+                    {state === 'loading' ? <p className='text-center text-2xl font-bold'>Loading...</p> : ''}
                     <Outlet></Outlet>
                 </section>
 

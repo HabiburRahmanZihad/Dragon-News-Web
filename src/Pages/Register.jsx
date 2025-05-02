@@ -19,10 +19,8 @@ const Register = () => {
         console.log(name, photoURL, email, password, terms);
 
         createUser(email, password)
-            .then(result => {
+            .then(() => {
                 alert('User Created Successfully');
-                const user = result.user;
-                console.log(user);
                 navigate('/auth');
             })
             .catch(error => {

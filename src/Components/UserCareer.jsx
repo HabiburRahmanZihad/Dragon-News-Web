@@ -3,7 +3,7 @@ import { AuthContext } from '../Provider/AuthContext';
 import Navbar from './Navbar';
 
 const UserCareer = () => {
-    const { user, loading } = use(AuthContext);
+    const { loading } = use(AuthContext);
 
     if (loading) {
         return <div className='flex justify-center items-center h-screen'>
@@ -11,7 +11,6 @@ const UserCareer = () => {
         </div>;
     }
 
-    console.log(user);
     return (
         <div>
             <Navbar></Navbar>

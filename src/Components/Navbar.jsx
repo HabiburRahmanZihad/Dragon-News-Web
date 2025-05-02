@@ -23,9 +23,9 @@ const Navbar = () => {
     return (
         <div className='flex justify-between items-center '>
 
-            <div className=''>{user && user.email} </div>
+            <div className='hidden md:flex'>{user && user.email} </div>
 
-            <div className='nav flex items-center gap-5 text-accent'>
+            <div className='flex items-center gap-5 text-accent'>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/'> Home</NavLink>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/about'> About</NavLink>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/career'> Career</NavLink>

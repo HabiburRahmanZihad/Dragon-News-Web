@@ -1,17 +1,22 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
-import { useNavigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
+
 
 const PrivateRoute = ({ children }) => {
+    const location = useLocation();
+
     const { user, loading } = use(AuthContext);
-    const navigate = useNavigate();
+
 
     if (loading) {
-        return <div className='flex justify-center items-center min-h-screen'>Loading...</div>
+        return <div className='flex justify-center items-center h-screen'>
+            <progress className="progress w-56"></progress>
+        </div>;
     }
 
     if (!user) {
-        return navigate('/auth', { replace: true });
+        return <Navigate state={location?.pathname} to="/auth" />;
     }
 
     return children;

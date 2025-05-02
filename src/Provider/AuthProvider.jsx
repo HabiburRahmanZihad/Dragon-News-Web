@@ -40,7 +40,6 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe(); // Cleanup subscription on unmount
     }, [])
 
-    // console.log(user); 
 
     const userInfo = {
         user,

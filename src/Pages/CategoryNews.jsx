@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import NewsCard from '../Components/NewsCard';
 import { MdOutlineScreenSearchDesktop } from 'react-icons/md';
-import { IoNewspaperOutline } from 'react-icons/io5';
 import { FaRegNewspaper } from 'react-icons/fa';
 
 const CategoryNews = () => {

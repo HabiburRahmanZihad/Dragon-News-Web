@@ -2,24 +2,30 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router';
 import Root from '../Layout/Root';
 import Home from '../Pages/Home';
-import CategoryNews from '../Pages/CategoryNews';
 import AuthLayout from '../Layout/AuthLayout';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+// import PrivateRoute from './PrivateRoute';
+import CategoryNews from '../Pages/CategoryNews';
+import UserCareer from '../Components/UserCareer';
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        // element: <PrivateRoute> <Root></Root> </PrivateRoute>,
         errorElement: <p>error</p>,
 
         children: [
-            { index: true, element: <Home></Home> },
+            {
+                index: true,
+                element: <Home></Home>,
+            },
 
             {
                 path: '/category/:id',
                 loader: () => fetch('/news.json'),
-                Component: CategoryNews,
+                element: <CategoryNews></CategoryNews>,
                 hydrateFallbackElement: <p>Loading...</p>,
             },
         ]
@@ -43,5 +49,5 @@ export const router = createBrowserRouter([
         ]
     },
 
-    { path: 'career', element: <h1>career</h1> },
+    { path: 'career', element: <UserCareer></UserCareer> },
 ]);

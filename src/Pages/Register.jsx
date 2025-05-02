@@ -1,9 +1,11 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Register = () => {
     const { createUser } = use(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -21,6 +23,7 @@ const Register = () => {
                 alert('User Created Successfully');
                 const user = result.user;
                 console.log(user);
+                navigate('/auth');
             })
             .catch(error => {
                 alert(error.message);
@@ -41,19 +44,19 @@ const Register = () => {
                     <form onSubmit={handleRegister} className="fieldset gap-4">
 
                         <label className="label text-xl font-bold">Your Name</label>
-                        <input type="text" name='name' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your name" />
+                        <input type="text" name='name' className="input w-full bg-base-200 py-8 border-0 text-accent" required placeholder="Enter your name" />
 
                         <label className="label text-xl font-bold">Photo URL</label>
-                        <input type="text" name='photoURL' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your Photo Link" />
+                        <input type="text" name='photoURL' className="input w-full bg-base-200 py-8 border-0 text-accent" required placeholder="Enter your Photo Link" />
 
                         <label className="label text-xl font-bold">Email address</label>
-                        <input type="email" name='email' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your email address" />
+                        <input type="email" name='email' className="input w-full bg-base-200 py-8 border-0 text-accent" required placeholder="Enter your email address" />
 
                         <label className="label text-xl font-bold">Password</label>
-                        <input type="password" name='password' className="input w-full bg-base-200 py-8 border-0 text-accent" placeholder="Enter your password" />
+                        <input type="password" name='password' className="input w-full bg-base-200 py-8 border-0 text-accent" required placeholder="Enter your password" />
 
                         <div className="text-accent flex items-center  gap-4">
-                            <input type="checkbox" defaultChecked name='terms' className="checkbox" />Accept
+                            <input type="checkbox" defaultChecked name='terms' required className="checkbox" />Accept
                             <span className='font-bold'>Term & Conditions</span>
                         </div>
 

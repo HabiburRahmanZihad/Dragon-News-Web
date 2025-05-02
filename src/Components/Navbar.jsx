@@ -1,17 +1,29 @@
 import React, { use } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, Navigate, NavLink } from 'react-router';
 import userIcon from '../assets/user.png';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Navbar = () => {
 
-    const { user } = use(AuthContext);
+    const { user, signOutUser } = use(AuthContext);
+
+    const handleLogout = () => {
+        // Handle logout logic here, e.g., call a logout function from AuthContext
+        signOutUser()
+            .then(() => {
+                alert('User Logged Out Successfully');
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+    }
+
 
 
     return (
         <div className='flex justify-between items-center '>
 
-            <div className=''>{user && user.email } </div>
+            <div className=''>{user && user.email} </div>
 
             <div className='nav flex items-center gap-5 text-accent'>
                 <NavLink className={({ isActive }) => isActive ? '' : ''} to='/'> Home</NavLink>
@@ -20,8 +32,14 @@ const Navbar = () => {
             </div>
 
             <div className='login-btn flex items-center gap-5'>
-                <img className='w-[30px]' src={userIcon} alt="" />
-                <Link to='/auth' className='btn btn-primary px-10'>Login</Link>
+
+                <div >
+                    <img className='w-[30px] cursor-pointer' src={userIcon} alt="" />
+                </div>
+
+                {user
+                    ? <button onClick={handleLogout} className='btn btn-secondary px-10'>Logout</button>
+                    : <Link to='/auth' className='btn btn-primary px-10'>Login</Link>}
             </div>
 
         </div>

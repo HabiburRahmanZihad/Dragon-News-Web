@@ -1,6 +1,7 @@
 import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -20,7 +21,7 @@ const Login = () => {
 
         signInUser(email, password)
             .then(() => {
-                alert('User Logged In Successfully');
+                Swal.fire('User Logged In Successfully');
                 // Navigate to the path stored in state from PrivateRoute, or default to home
                 const destination = location.state || '/';
                 navigate(destination);
@@ -35,12 +36,12 @@ const Login = () => {
     const handleFrogetPass = () => {
         const email = emailRef.current.value;
         if (!email) {
-            alert('Please enter your email address to reset password');
+            Swal.fire('Please enter your email address to reset password');
             return;
         }
         forgetPassword(email)
             .then(() => {
-                alert('Password reset email sent. Please check your inbox.');
+                Swal.fire('Password reset email sent. Please check your inbox.');
             })
             .catch(error => {
                 setError(error.message);

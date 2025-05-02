@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { Link, Navigate, NavLink } from 'react-router';
 import userIcon from '../assets/user.png';
 import { AuthContext } from '../Provider/AuthContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
@@ -11,16 +12,12 @@ const Navbar = () => {
         // Handle logout logic here, e.g., call a logout function from AuthContext
         signOutUser()
             .then(() => {
-                alert('User Logged Out Successfully');
+                Swal.fire('User Logged Out Successfully');
             })
             .catch(error => {
-                alert(error.message);
+                console.error(error.message);
             })
     }
-
-    console.log(user);
-
-
 
     return (
         <div className='flex justify-between items-center '>
@@ -37,7 +34,7 @@ const Navbar = () => {
 
                 <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
                     <img className=' cursor-pointer'
-                        src={`${user ? user?.photoURL : userIcon}`} alt="" />
+                        src={user?.photoURL || userIcon} alt="" />
                 </div>
 
                 {user

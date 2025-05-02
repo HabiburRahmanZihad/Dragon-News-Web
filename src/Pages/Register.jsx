@@ -1,11 +1,12 @@
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [error, setError] = useState('');
 
-    const { createUser, updateUserProfile, user,setUser } = use(AuthContext);
+    const { createUser, updateUserProfile, user, setUser } = use(AuthContext);
 
     const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ const Register = () => {
                         setError(error.message);
                     });
                 // User created successfully
-                alert('User Created Successfully');
+                Swal.fire('User Created Successfully');
                 navigate('/');
             })
             .catch(error => {

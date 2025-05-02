@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from 'react-router';
 import NewsCard from '../Components/NewsCard';
 import { MdOutlineScreenSearchDesktop } from 'react-icons/md';
 import { FaRegNewspaper } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const CategoryNews = () => {
     const [categoryNews, setCategoryNews] = useState([]);
@@ -35,7 +36,7 @@ const CategoryNews = () => {
         if (filteredNews.length > 0) {
             setCategoryNews(filteredNews);
         } else {
-            alert('No news found! Search another Topic.');
+            Swal.fire('No news found! Search another Topic.');
             return ;
         }
 

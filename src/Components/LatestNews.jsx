@@ -9,7 +9,7 @@ const LatestNews = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('/public/news.json')
+        axios.get('/news.json')
             .then(response => {
                 // Filter for today's picks directly when setting state
                 const todaysPicks = response.data.filter(item => item.others?.is_today_pick);

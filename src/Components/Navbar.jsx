@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { Link, Navigate, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import userIcon from '../assets/user.png';
 import { AuthContext } from '../Provider/AuthContext';
 import Swal from 'sweetalert2';

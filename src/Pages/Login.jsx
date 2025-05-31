@@ -2,6 +2,9 @@ import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 import Swal from 'sweetalert2';
+import Lottie from "lottie-react";
+import loginAnimation from '../assets/Lotties/Animation - 1748663839304.json';
+import { motion } from "motion/react"
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -49,9 +52,13 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='flex flex-col-reverse md:flex-row items-center justify-center gap-10 px-5 md:px-0'>
             <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl mx-auto pt-5 mb-10 md:p-14 md:px-10">
-                <h1 className='text-center pt-10 md:pt-0 pb-7 text-[#403F3F] font-semibold text-3xl'>Login your account</h1>
+                <motion.h1 animate={{
+                    scale: [0,1],
+                    opacity: [0, 100],
+                    transition: { duration: 5 }
+                }} className='text-center pt-10 md:pt-0 pb-7 text-[#403F3F] font-semibold text-3xl'>Login your account</motion.h1>
 
                 <div className='divider w-4/5 mx-auto'></div>
 
@@ -66,13 +73,16 @@ const Login = () => {
                         <button type="button" onClick={handleFrogetPass} className="link link-hover text-accent">Forgot password?</button>
 
 
-                        <p  className="text-center text-red-600">{error} </p>
+                        <p className="text-center text-red-600">{error} </p>
 
                         <button type='submit' className="btn btn-primary my-4">Login</button>
                     </form>
 
                     <p className='text-accent text-center'>Dont't Have An Account ? <Link to='/auth/register' className='text-secondary'>Register</Link> </p>
                 </div>
+            </div>
+            <div className='w-full md:w-1/2 lg:w-1/3 shrink-0'>
+                <Lottie animationData={loginAnimation} loop={true} />;
             </div>
         </div>
     );

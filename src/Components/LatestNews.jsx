@@ -5,7 +5,7 @@ import axios from 'axios';
 const LatestNews = () => {
 
     const [latestNews, setLatestNews] = useState([]);
-    
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

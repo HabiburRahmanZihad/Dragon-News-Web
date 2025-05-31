@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 import Swal from 'sweetalert2';
+import { motion } from "motion/react"
 
 const Register = () => {
     const [error, setError] = useState('');
@@ -65,7 +66,17 @@ const Register = () => {
         <div>
             <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl mx-auto pt-5 mb-10 md:pt-14 md:px-10">
 
-                <h1 className='text-center pt-10 md:pt-0  pb-7 text-[#403F3F] font-semibold text-3xl'>Register your account</h1>
+                <motion.h1
+                    animate={{
+                        color: ['#ff5733', '#33ff33', '#8a33ff'],
+                        // scale: [0, 1],
+                        scale: [1],
+                        // scale: [0.8, 1.2, 0.8],
+                        opacity: [0, 1],
+                        transition: { duration: 2, repeat: Infinity }
+                        // transition: { duration: 2, repeat: Infinity , repeatType: 'reverse' }
+                    }}
+                    className='text-center pt-10 md:pt-0  pb-7 text-[#403F3F] font-semibold text-3xl'>Register your account</motion.h1>
 
                 <div className='divider w-4/5 mx-auto'></div>
 

@@ -12,7 +12,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@tailwindcss/vite": "^4.1.4",
-    "axios": "^1.9.0",
+    "axios": "^1.12.0",
     "date-fns": "^4.1.0",
     "firebase": "^11.6.1",
     "lottie-react": "^2.4.1",
